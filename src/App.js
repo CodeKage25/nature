@@ -1,25 +1,68 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./assets/logo.svg";
+import styled from 'styled-components';
+import ParallaxHeroSection from "./components/ParallaxHeroSection";
+
+import ContentSection from "./components/ContentSection";
+import CrossRevealSection from "./components/CrossRevealSection";
+
+import Skincare from "../src/assets/images/Skincare.jpg";
+import LandscapeL2 from "../src/assets/images/LandscapeL2.jpg";
+
+const StyledHeroSection = styled.section`
+position: relative;
+height: 100vh;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: space-between;
+
+img{
+  height: 25vmin;
+  pointer-events: none;
+}
+`;
+
+const StyledTitle = styled.h1`
+color: black;
+font-size: 2rem;
+font-weight:400;
+letter-spacing: 4px;
+text-align: center;
+text-transform: uppercase;
+padding-top: 4rem;
+`;
+
+
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+    <>
+    <StyledHeroSection>
+        <img src={logo} alt="logo" />
+        <StyledTitle>
+          Healthy skin is a reflection of overall wellness.
+      </StyledTitle>
+      <ParallaxHeroSection />
+    </StyledHeroSection>
+      <ContentSection title={"Skin Care"}
+        text={"Asymmetrical vice humblebrag art party, sriracha dolor yes plz non gentrify. Praxis letterpress dolor hot chicken."}
+      />
+
+      <CrossRevealSection
+        skin={Skincare}
+        landscape={LandscapeL2}
+        name={"Fleur Kaan"}
+        job={"CEO"}
+        sentenceOne={"Invest in your Skin."}
+        sentenceTwo={"It's an investment."}
+      />
+
+<ContentSection title={"Excellent Skin Product"}
+        text={"Asymmetrical vice humblebrag art party, sriracha dolor yes plz non gentrify. Praxis letterpress dolor hot chicken."}
+      />
+    </>
+  )
+};
 
 export default App;
