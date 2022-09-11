@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-gsap.registerPlugin(ScrollTrigger)
+gsap.registerPlugin(ScrollTrigger);
 
 const StyledCrossRevealContainer = styled.section`
   position: relative;
@@ -77,21 +77,22 @@ function CrossRevealSection({
     job,
     sentenceOne,
     sentenceTwo,
+    crossreveal
 }) {
     // Animating the container one way
-    const containerRef = useRef();
+    const containerRef = useRef(null);
 
     // Animating the image the opposite way at the same time
-    const imageRef = useRef();
+    const imageRef = useRef(null);
 
     // Specifying the point where the animation should start
-    const triggerRef = useRef();
+    const triggerRef = useRef(null);
 
     // Targeting the person container
-    const personRef = useRef();
+    const personRef = useRef(null);
 
     //targeting the quote container
-    const quoteRef = useRef();
+    const quoteRef = useRef(null);
 
     useEffect(() => {
         const crossRevealTween = gsap.timeline({
@@ -111,19 +112,19 @@ function CrossRevealSection({
                 // AnticipatePin help avoid small jump when you pin the section
                 anticipatePin: 1,
                 //Markers to see when the element is pinned and unpinned when an animation is triggered
-                markers: true,
+                // markers: true,
             }
         });
         //Animating the container 
         crossRevealTween
-            .fromTo(containerRef.current, { xPercent: 100, x: 0 }, { xPercent: 0 })
+            .fromTo(containerRef.current, { [crossreveal]: 100, x: 0 }, { [crossreveal]: 0 })
             // Animating the image the opposite way at the same time
-            .fromTo(imageRef.current, { xPercent: -100, x: 0 }, { xPercent: 0 }, 0)
+            .fromTo(imageRef.current, { [crossreveal]: -100, x: 0 }, { [crossreveal]: 0 }, 0)
             // fade in the name and the job
             .from(personRef.current, { autoAlpha: 0 }, 0)
             //FADE in the quote
             .from(quoteRef.current, { autoAlpha: 0, delay: 0.26 }, 0)
-    }, []);
+    }, [crossreveal]);
 
     return (
         <StyledCrossRevealContainer ref={triggerRef}>
