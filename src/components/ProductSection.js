@@ -1,9 +1,13 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import styled from "styled-components";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import box from "../assets/images/box.png";
 import nightCream from '../assets/images/nightCream.png';
 import dayCream from '../assets/images/dayCream.png';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const StyledTextSection = styled.section`
 position: relative;
@@ -91,6 +95,76 @@ function ProductSection() {
     const dayCreamRef = useRef();
     const nightAndDayCreamTextRef = useRef();
 
+    useEffect(() => {
+        const scaleDownTween = gsap.timeline({
+            ease: "none",
+            scrollTrigger: {
+                trigger: textSectionTriggerRef.current,
+                start: "bottom bottom",
+                scrub: true,
+            },
+        });
+        scaleDownTween
+            .fromTo(productWrapperRef.current, {
+                scale: 2.8,
+                transformOrigin: "center top"
+            }, {
+                scale: 2.2,
+                y: "-50%"
+            })
+            .to(productWrapperRef.current, {
+                scale: 1,
+                y: 0,
+            });
+        
+    }, []);
+    useEffect(() => {
+        const splitTween = gsap.timeline({
+            ease: "none",
+            scrollTrigger: {
+                trigger: ProductSectionTriggerRef.current,
+                start: "bottom bottom",
+                pin: true,
+                scrub: true,
+                anticipatePin: 1,
+            },
+        });
+        splitTween.to(boxRef.current, {
+            x: "-55%",
+            duration: 3,
+        })
+            .to(nightCreamRef.current, {
+                x: "60%",
+                duration: 3
+            }, "-=3"
+        )
+        .from(boxTextRef.current, {
+            autoAlpha: 0,
+            duration: 0.3,
+        }, "-=3")
+            .from(nightAndDayCreamTextRef.current, {
+                autoAlpha: 0,
+                duration: 0.3,
+            }, "-=3")
+            .to(boxTextRef.current, {
+                x: "-30%",
+                duration: 3
+            }, "-=3")
+            .to(nightAndDayCreamTextRef.current, {
+                x: "28%",
+                duration: 3,
+            }, "-=3")
+            .set(dayCreamRef.current, {
+            display: "block"
+            })
+            .from(dayCreamRef.current, {
+                autoAlpha: 0,
+                transformOrigin: "center center",
+                duration: 1,
+                scale: 0.95,
+        })
+    }, [])
+
 
     return (
         <>
@@ -100,8 +174,7 @@ function ProductSection() {
                     messenger bag listicle eu gentrify
                     lumbersexual venmo distillery wolf flannel enamel pin poke.
                     Ascot wolf ut enim asymmetrical fugiat franzen tumblr.
-                    Austin artisan labore, +1 church-key vice pitchfork
-                    locavore minim aliquip street art.
+                    Austin artisan labore.
                 </p>
             </StyledTextSection>
             <StyledProductSection ref={ProductSectionTriggerRef} >
