@@ -4,6 +4,7 @@ import ParallaxHeroSection from "./components/ParallaxHeroSection";
 
 import ContentSection from "./components/ContentSection";
 import CrossRevealSection from "./components/CrossRevealSection";
+import ProductSection from "./components/ProductSection";
 
 import Skincare from "../src/assets/images/Skincare.jpg";
 import LandscapeL2 from "../src/assets/images/LandscapeL2.jpg";
@@ -46,7 +47,9 @@ function App() {
           Healthy skin is a reflection of overall wellness.
       </StyledTitle>
       <ParallaxHeroSection />
-    </StyledHeroSection>
+      </StyledHeroSection>
+      <ProductSection />
+      
       <ContentSection title={"Skin Care"}
         text={"Asymmetrical vice humblebrag art party, sriracha dolor yes plz non gentrify. Praxis letterpress dolor hot chicken."}
       />
