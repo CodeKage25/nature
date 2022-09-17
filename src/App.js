@@ -2,10 +2,12 @@ import logo from "./assets/logo.svg";
 import styled from 'styled-components';
 import ParallaxHeroSection from "./components/ParallaxHeroSection";
 
+import Cursor from "./components/Cursor";
+
 import ContentSection from "./components/ContentSection";
 import CrossRevealSection from "./components/CrossRevealSection";
 import ProductSection from "./components/ProductSection";
-
+import VideoSequenceSection from "./components/VideoSequenceSection";
 import Skincare from "../src/assets/images/Skincare.jpg";
 import LandscapeL2 from "../src/assets/images/LandscapeL2.jpg";
 
@@ -41,6 +43,7 @@ padding-top: 4rem;
 function App() {
   return (
     <>
+      <Cursor />
     <StyledHeroSection>
         <img src={logo} alt="logo" />
         <StyledTitle>
@@ -49,7 +52,7 @@ function App() {
       <ParallaxHeroSection />
       </StyledHeroSection>
       <ProductSection />
-      
+
       <ContentSection title={"Skin Care"}
         text={"Asymmetrical vice humblebrag art party, sriracha dolor yes plz non gentrify. Praxis letterpress dolor hot chicken."}
       />
@@ -77,6 +80,9 @@ function App() {
         sentenceTwo={"It's an investment."}
         crossreveal={"yPercent"}
       />
+
+      <VideoSequenceSection />
+      
     </>
   )
 };
